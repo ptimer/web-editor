@@ -6,6 +6,8 @@ export * from './ImageIcon';
 export * from './TextAlignLeftIcon';
 export * from './TrashIcon';
 export * from './Input';
+export * from './Textarea';
+export * from './Button';
 export * from './Header'
 export * from './Block';
 export * from './EditableBlock';
