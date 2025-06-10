@@ -3,8 +3,6 @@ type BlockType = 'headline' | 'paragraph' | 'image' | 'button';
 interface BaseBlock {
     id: string;
     type: BlockType;
-    label: string;
-    icon: JSX.Element;
     order: number;
 }
 
