@@ -1,5 +1,4 @@
 import { cn } from "@/common/utils"
-import type React from "react"
 
 interface Props extends React.ComponentProps<'div'> {
   data: BlockData;
