@@ -1,9 +1,12 @@
-import { MockBlocks } from "@/common/constants"
 import { Button } from "@/components"
-
-const sortByOrder = (a: BlockData, b: BlockData) => a.order - b.order;
+import type { RootState } from "@/store/store";
+import { useSelector } from "react-redux";
 
 export const Preview = () => {
+  const blocks = useSelector((state: RootState) =>
+    [...state.editor.blocks].sort((a, b) => a.order - b.order)
+  );
+  
   const renderBlock = (block: BlockData) => {
     switch(block.type) {
       case 'headline':
@@ -25,7 +28,7 @@ export const Preview = () => {
 
   return (
     <div className="flex-1 flex flex-col p-30 gap-30 items-center">
-        {MockBlocks.sort(sortByOrder).map(block => renderBlock(block))}
+        {blocks.map(block => renderBlock(block))}
     </div>
   )
 }
