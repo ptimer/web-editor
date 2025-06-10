@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+@import "tailwindcss";
+
+:root {
+  --font-roboto: "Roboto", sans-serif;
+
+  --color-white: #FFFFFF;
+  --color-dark-grey: #252A32;
+  --color-blue: #449CF4;
+  --color-primary-blue: #4368E0;
+  --color-accent-cyan: #68C2E9;
+  --color-blue-lightest: #F6F9FE;
+  --color-blue-grey: #97AACD;
+  --color-grey-lightest: #F5F5FC;
+  --color-accent-cyan-dark: #4B97B8;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  --tracking-tighter: 0.02em;
+}
+
+@theme inline {
+  /* https://tailwindcss.com/docs/theme#using-a-custom-theme */
+  --*: initial;
+  --font-roboto: var(--font-roboto);
+
+  --color-white: var(--color-white);
+  --color-dark-grey: var(--color-dark-grey);
+  --color-blue: var(--color-blue);
+  --color-primary-blue: var(--color-primary-blue);
+  --color-accent-cyan: var(--color-accent-cyan);
+  --color-blue-lightest: var(--color-blue-lightest);
+  --color-blue-grey: var(--color-blue-grey);
+  --color-grey-lightest: var(--color-grey-lightest);
+  --color-accent-cyan-dark: var(--color-accent-cyan-dark);
+
+  --spacing: 0.0625rem;
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 96rem;
+
+  --container-3xs: 16rem;
+  --container-2xs: 18rem;
+  --container-xs: 20rem;
+  --container-sm: 24rem;
+  --container-md: 28rem;
+  --container-lg: 32rem;
+  --container-xl: 36rem;
+  --container-2xl: 42rem;
+  --container-3xl: 48rem;
+  --container-4xl: 56rem;
+  --container-5xl: 64rem;
+  --container-6xl: 72rem;
+  --container-7xl: 80rem;
+
+  --font-weight-normal: var(--font-weight-normal);
+  --font-weight-medium: var(--font-weight-medium);
+  --font-weight-bold: var(--font-weight-bold);
+
+  --text-heading-01: 1.375rem;
+  --text-heading-01--line-height: 1.5;
+  --text-heading-01--weight: var(--font-weight-bold);
+
+  --text-heading-02: 1.125rem;
+  --text-heading-02--line-height: 1.5;
+  --text-heading-02--weight: var(--font-weight-medium);
+
+  --text-body-01: 0.875rem;
+  --text-body-01--line-height: 1.5;
+  --text-body-01--weight: var(--font-weight-normal);
+
+  --text-body-02: 0.75rem;
+  --text-body-02--line-height: 1.5;
+  --text-body-02--weight: var(--font-weight-normal);
+
+  --text-body-03: 0.6875rem;
+  --text-body-03--line-height: 1.5;
+  --text-body-03--weight: var(--font-weight-normal);
+
+  --text-btn: 0.875rem;
+  --text-btn--line-height: 1.45;
+  --text-btn--weight: var(--font-weight-medium);
+
+  --tracking-tighter: var(--tracking-tighter);
+}
+
+@layer base {
+  body {
+    font-family: var(--font-roboto);
+    background-color: var(--color-white);
+    color: var(--color-dark-grey);
+  }
+}
+
+@utility text-custom-* {
+  /* https://tailwindcss.com/docs/adding-custom-styles#matching-theme-values */
+  font-size: --value(--text-*);
+  line-height: --value(--text-*--line-height);
+  letter-spacing: var(--tracking-tighter);
+  font-weight: --value(--text-*--weight);
+}
