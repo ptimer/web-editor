@@ -20,6 +20,7 @@ interface ParagraphBlock extends BaseBlock {
 
 interface ImageBlock extends BaseBlock {
     type: 'image';
+    alt: string;
     url: string;
 }
 

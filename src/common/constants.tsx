@@ -7,5 +7,5 @@ export const MockBlocks: BlockData[] = [
 Using the "Insert" panel on the right, drag and drop 
 the Abandoned Cart element onto the page below.` },
   { id: '3', order: 4, type: 'button', label: 'Button', icon: <ImageIcon />, text: 'Register now' },
-  { id: '4', order: 1, type: 'image', label: 'Image', icon: <ImageIcon />, url: 'https://images.unsplash.com/photo-1676567512299-e7e1e3f7f6f4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80' },
+  { id: '4', order: 1, type: 'image', label: 'Image', icon: <ImageIcon />, alt: 'Image', url: 'https://media.istockphoto.com/id/1399246824/uk/%D1%84%D0%BE%D1%82%D0%BE/%D1%86%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D1%96-%D0%BB%D1%96%D0%BD%D1%96%D1%97-%D1%85%D0%B2%D0%B8%D0%BB%D1%8C-%D0%BE%D1%87%D0%B5%D0%B9-%D1%81%D1%82%D0%BE%D0%BA%D0%BE%D0%B2%D0%B8%D0%B9-%D1%84%D0%BE%D0%BD.jpg?s=2048x2048&w=is&k=20&c=iXYM50PebeJ5hBfhKleK_xL-gDDMbMVxNG1C6VO4984=' },
 ]
