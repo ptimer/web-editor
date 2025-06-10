@@ -1,5 +1,5 @@
 import { cn } from "@/common/utils";
-import { Block, Input, EditableBlockToolbar } from "@/components";
+import { Block, Input, EditableBlockToolbar, Textarea } from "@/components";
 import React, { useState } from "react";
 
 interface Props extends React.ComponentProps<'div'> {
@@ -11,12 +11,13 @@ export const EditableBlock = ({ data, ...props }: Props) => {
 
     const toggleEditMode = () => setEditMode(prev => !prev);
     
+    // TODO: add palette, add image upload, add text align
     const composeSettings = () => {
         switch(data.type) {
             case 'headline':
                 return <Input type="text" placeholder="Enter headline" />
             case 'paragraph':
-                return <Input type="text" placeholder="Enter paragraph" />
+                return <Textarea placeholder="Enter paragraph" />
             case 'button':
                 return <Input type="text" placeholder="Enter button text" />
             case 'image':
