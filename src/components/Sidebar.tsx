@@ -13,7 +13,7 @@ export const Sidebar = () => {
   };
 
   return (
-    <div className="grid grid-cols-2 auto-rows-min w-270 gap-10 p-30 border-r-1 border-[#E4E6F1]">
+    <div className="grid grid-cols-1 xl:grid-cols-2 auto-rows-min w-270 gap-10 p-30 border-r-1 border-[#E4E6F1]">
         {mockBlocks.map(block => (
           <Draggable
             type="BLOCK"

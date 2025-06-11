@@ -41,7 +41,7 @@ export const Block = ({
   const { icon, label } = composeBlockData();
 
   return (
-    <div className={cn("relative min-w-100 w-full px-10 py-15 rounded-md cursor-pointer bg-white", className)} {...props}>
+    <div className={cn("relative w-full px-10 py-15 rounded-md cursor-pointer bg-white", className)} {...props}>
       <div className="flex flex-col items-center gap-10">
         {icon}
         <p className="text-custom-body-02 text-dark-grey">{label}</p>
