@@ -1,6 +1,6 @@
 import { updateBlock } from "@/store/features/blocks";
 import debounce from "lodash.debounce";
-import { useEffect, useMemo, type JSX } from "react";
+import { useEffect, type JSX } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { Textarea } from "./Textarea";
@@ -13,7 +13,7 @@ interface Props extends React.ComponentProps<"div"> {
 export const EditableBlockSettings = ({ data, ...props }: Props) => {
   const dispatch = useDispatch();
 
-  const defaultValues = useMemo(() => {
+  const composeDefaultFormValues = () => {
     switch (data.type) {
       case "headline":
         return { content: data.content };
@@ -26,13 +26,12 @@ export const EditableBlockSettings = ({ data, ...props }: Props) => {
       default:
         return {};
     }
-  }, [data]);
-
+  }
   const { register, watch } = useForm<BlockData>({
-    defaultValues
+    defaultValues: composeDefaultFormValues()
   });
 
-  const handleWatched = () => {
+  const watchFormFieldsByBlockType = () => {
     switch (data.type) {
       case "headline":
       case "paragraph":
@@ -45,7 +44,7 @@ export const EditableBlockSettings = ({ data, ...props }: Props) => {
     }
   }
 
-  const watched = handleWatched();
+  const watched = watchFormFieldsByBlockType();
 
   const debouncedUpdate = debounce((changes: Partial<BlockData>) => {
     dispatch(updateBlock({ id: data.id, changes }));
@@ -67,7 +66,9 @@ export const EditableBlockSettings = ({ data, ...props }: Props) => {
     }
   }, [watched, data.type, debouncedUpdate]);
 
-  const composedSettingsByType: Record<BlockData["type"], JSX.Element> = {
+
+  // TODO: separate component ?
+  const composedBlockSettingsFields: Record<BlockType, JSX.Element> = {
     headline: (
       <Input {...register("content")} placeholder="Enter headline" />
     ),
@@ -78,15 +79,14 @@ export const EditableBlockSettings = ({ data, ...props }: Props) => {
       <Input {...register("content")} placeholder="Enter button text" />
     ),
     image: (
-      // TODO: fix label id
       <div className="flex flex-col gap-5">
-        <label className="text-dark-grey text-custom-body-01" htmlFor="image.url">Image URL</label>
-        <Input {...register("url")} placeholder="Enter image URL" id="image.url" />
-        <label className="text-dark-grey text-custom-body-01" htmlFor="image.alt">Alt text</label>
-        <Input {...register("alt")} placeholder="Enter alt text" id="image.alt" />
+        <label className="text-dark-grey text-custom-body-01" htmlFor="image-url">Image URL</label>
+        <Input {...register("url")} placeholder="Enter image URL" id="image-url" />
+        <label className="text-dark-grey text-custom-body-01" htmlFor="image-alt">Alt text</label>
+        <Input {...register("alt")} placeholder="Enter alt text" id="image-alt" />
       </div>
     ),
   };
 
-  return <div {...props}>{composedSettingsByType[data.type]}</div>;
+  return <div {...props}>{composedBlockSettingsFields[data.type]}</div>;
 };
