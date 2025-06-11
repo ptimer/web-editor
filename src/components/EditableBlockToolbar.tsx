@@ -1,6 +1,6 @@
 import { ArrowDownIcon, ArrowUpIcon, TrashIcon, CopyIcon } from "@/components";
 
-interface Props extends React.ComponentProps<"div"> {
+interface Props {
   handleMoveUp: () => void;
   handleMoveDown: () => void;
   handleDelete: () => void;
@@ -8,12 +8,10 @@ interface Props extends React.ComponentProps<"div"> {
 }
 
 export const EditableBlockToolbar = ({ 
-  className,
   handleMoveUp,
   handleMoveDown,
   handleDelete,
   handleClone,
-  ...props 
 }: Props) => {
   return (
     <div className="flex gap-5">

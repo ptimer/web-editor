@@ -18,6 +18,7 @@ export const Droppable = <T extends object>({
   children,
   className,
 }: DroppableProps<T>) => {
+  //@ts-ignore
   const [{ isOver, canDrop: dropAllowed }, dropRef] = useDrop<T>({
     accept: type,
     drop: (draggedItem, monitor: DropTargetMonitor) => {
@@ -39,6 +40,7 @@ export const Droppable = <T extends object>({
 
   return (
     <div
+      //@ts-ignore
       ref={dropRef}
       className={`${className ?? ""} ${isOver && dropAllowed ? "ring-2 ring-blue-500" : ""}`}
     >

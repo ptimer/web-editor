@@ -25,6 +25,7 @@ const blocksSlice = createSlice({
           .map((block) => block!.order)
       ) + 1;
 
+      //@ts-ignore
       blocksAdapter.addOne(state, { id, ...action.payload, order: maxOrder });
     },
 

@@ -28,6 +28,7 @@ export const Draggable = <T extends object>({
 
   return (
     <div
+      //@ts-ignore
       ref={dragRef}
       className={`${className ?? ""} ${isDragging ? "opacity-50" : ""}`}
     >
