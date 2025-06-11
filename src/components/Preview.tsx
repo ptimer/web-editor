@@ -1,11 +1,10 @@
+import { sortBlocksByOrder } from "@/common/utils";
 import { Button } from "@/components"
-import type { RootState } from "@/store/store";
+import { selectAllBlocks } from "@/store/features/blocks";
 import { useSelector } from "react-redux";
 
 export const Preview = () => {
-  const blocks = useSelector((state: RootState) =>
-    [...state.editor.blocks].sort((a, b) => a.order - b.order)
-  );
+  const blocks = useSelector(selectAllBlocks);
   
   const renderBlock = (block: BlockData) => {
     switch(block.type) {
@@ -14,7 +13,7 @@ export const Preview = () => {
       case 'paragraph':
         return <p className="text-custom-body-01 text-blue-grey text-center">{block.content}</p>
       case 'button':
-        return <Button>{block.text}</Button>
+        return <Button>{block.content}</Button>
       case 'image':
         return (
           <div className="w-540">
@@ -28,7 +27,7 @@ export const Preview = () => {
 
   return (
     <div className="flex-1 flex flex-col p-30 gap-30 items-center">
-        {blocks.map(block => renderBlock(block))}
+        {sortBlocksByOrder(blocks).map(block => <div key={block.id}>{renderBlock(block)}</div>)}
     </div>
   )
 }

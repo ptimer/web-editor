@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import editorReducer from './features/editorSlice';
+import blocksReducer from './features/blocks';
 
 export const store = configureStore({
   reducer: {
-    editor: editorReducer,
+    blocks: blocksReducer,
   },
 })
 

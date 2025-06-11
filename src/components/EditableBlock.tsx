@@ -1,20 +1,15 @@
 import { cn } from "@/common/utils";
 import { Block, Input, EditableBlockToolbar, Textarea } from "@/components";
-import { deleteBlock, moveBlockDown, moveBlockUp, selectBlock } from "@/store/features/editorSlice";
-import type { RootState } from "@/store/store";
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { deleteBlock, moveBlockDown, moveBlockUp } from "@/store/features/blocks";
+import { useDispatch } from "react-redux";
 
 interface Props extends React.ComponentProps<'div'> {
   data: BlockData;
+  editMode: boolean;
 }
 
-export const EditableBlock = ({ data, ...props }: Props) => {
-    const selected = useSelector((state: RootState) => state.editor.selectedBlockId);
+export const EditableBlock = ({ data, editMode, ...props }: Props) => {
     const dispatch = useDispatch();
-
-    const isEditMode = selected === data.id;
-
     // TODO: add palette, add image upload, add text align
     const composeSettings = () => {
         switch(data.type) {
@@ -30,24 +25,31 @@ export const EditableBlock = ({ data, ...props }: Props) => {
                 return null
         }
     }
+
+    const handleClickMoveUp = () => dispatch(moveBlockUp(data.id));
+    const handleClickMoveDown = () => dispatch(moveBlockDown(data.id));
+    const handleClickDelete = () => dispatch(deleteBlock(data.id));
+    const handleClickCopy = () => {};
+
+    const handleClickSettings = (e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation();
   
     return (
         <Block
             type={data.type}
-            className={cn({ "bg-[#D9E7FF]": isEditMode })}
-            onClick={() => dispatch(selectBlock(data.id))}
+            className={cn({ "bg-[#D9E7FF]": editMode })}
+            {...props}
         >
-            {isEditMode && (
+            {editMode && (
                 <>
                     <div className="absolute -top-27 right-10 z-50">
                         <EditableBlockToolbar 
-                            handleMoveUp={() => dispatch(moveBlockUp(data.id))}
-                            handleMoveDown={() => dispatch(moveBlockDown(data.id))}
-                            handleDelete={() => dispatch(deleteBlock(data.id))}
-                            handleCopy={() => {}}
+                            handleMoveUp={handleClickMoveUp}
+                            handleMoveDown={handleClickMoveDown}
+                            handleDelete={handleClickDelete}
+                            handleCopy={handleClickCopy}
                         />
                     </div>
-                    <div className="p-5 rounded-xs bg-white w-full" onClick={(e) => e.stopPropagation()}>
+                    <div className="p-5 rounded-xs bg-white w-full" onClick={handleClickSettings}>
                         {composeSettings()}
                     </div>
                 </>
