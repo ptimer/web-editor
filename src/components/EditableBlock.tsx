@@ -11,13 +11,13 @@ interface Props extends React.ComponentProps<'div'> {
 export const EditableBlock = ({ data, editMode, ...props }: Props) => {
     const dispatch = useDispatch();
 
-    // TODO: refactor
-    const { id, ...clonedBlock } = data;
-
     const handleClickMoveUp = () => dispatch(moveBlockUp(data.id));
     const handleClickMoveDown = () => dispatch(moveBlockDown(data.id));
     const handleClickDelete = () => dispatch(deleteBlock(data.id));
-    const handleClickClone = () => dispatch(addBlock(clonedBlock));
+    const handleClickClone = () => {
+        const { id, ...clonedBlock } = data;
+        dispatch(addBlock(clonedBlock))
+    };
 
     const handleClickSettings = (e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation();
   
