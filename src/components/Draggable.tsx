@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { useDrag, type DragSourceMonitor } from "react-dnd";
 
+// TODO: types
 interface DraggableProps<T> {
   type: string;
   item: T;

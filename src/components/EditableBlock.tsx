@@ -1,6 +1,6 @@
 import { cn } from "@/common/utils";
-import { Block, Input, EditableBlockToolbar, Textarea, EditableBlockSettings } from "@/components";
-import { deleteBlock, moveBlockDown, moveBlockUp } from "@/store/features/blocks";
+import { Block, EditableBlockToolbar, EditableBlockSettings } from "@/components";
+import { addBlock, deleteBlock, moveBlockDown, moveBlockUp } from "@/store/features/blocks";
 import { useDispatch } from "react-redux";
 
 interface Props extends React.ComponentProps<'div'> {
@@ -11,10 +11,13 @@ interface Props extends React.ComponentProps<'div'> {
 export const EditableBlock = ({ data, editMode, ...props }: Props) => {
     const dispatch = useDispatch();
 
+    // TODO: refactor
+    const { id, ...clonedBlock } = data;
+
     const handleClickMoveUp = () => dispatch(moveBlockUp(data.id));
     const handleClickMoveDown = () => dispatch(moveBlockDown(data.id));
     const handleClickDelete = () => dispatch(deleteBlock(data.id));
-    const handleClickCopy = () => {};
+    const handleClickClone = () => dispatch(addBlock(clonedBlock));
 
     const handleClickSettings = (e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation();
   
@@ -31,7 +34,7 @@ export const EditableBlock = ({ data, editMode, ...props }: Props) => {
                             handleMoveUp={handleClickMoveUp}
                             handleMoveDown={handleClickMoveDown}
                             handleDelete={handleClickDelete}
-                            handleCopy={handleClickCopy}
+                            handleClone={handleClickClone}
                         />
                     </div>
                     <div className="p-5 rounded-xs bg-white w-full" onClick={handleClickSettings}>

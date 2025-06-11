@@ -4,7 +4,7 @@ interface Props extends React.ComponentProps<"div"> {
   handleMoveUp: () => void;
   handleMoveDown: () => void;
   handleDelete: () => void;
-  handleCopy: () => void;
+  handleClone: () => void;
 }
 
 export const EditableBlockToolbar = ({ 
@@ -12,7 +12,7 @@ export const EditableBlockToolbar = ({
   handleMoveUp,
   handleMoveDown,
   handleDelete,
-  handleCopy,
+  handleClone,
   ...props 
 }: Props) => {
   return (
@@ -26,7 +26,7 @@ export const EditableBlockToolbar = ({
           </div>
         </div>
         <div className="bg-accent-cyan flex gap-5 p-3 rounded-t-[0.1875rem]">
-          <div className="hover:bg-accent-cyan-dark p-3 rounded-sm" onClick={handleCopy}>
+          <div className="hover:bg-accent-cyan-dark p-3 rounded-sm" onClick={handleClone}>
             <CopyIcon className={"w-15 h-15"} />
           </div>
           <div className="hover:bg-accent-cyan-dark p-3 rounded-sm" onClick={handleDelete}>
