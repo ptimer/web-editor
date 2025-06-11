@@ -13,7 +13,7 @@ A simple drag-and-drop editor built with React, Redux Toolkit, Tailwind CSS, Rea
 
 ## Live Preview
 
-You can view the live preview of the app here: [Live Preview](#)
+You can view the live preview of the app here: [Live Preview](https://web-editor-gules.vercel.app/)
 
 ## Installation
 
