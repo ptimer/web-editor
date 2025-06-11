@@ -11,6 +11,7 @@ export * from './Button';
 export * from './Header'
 export * from './Block';
 export * from './EditableBlock';
+export * from './EditableBlockSettings';
 export * from './EditableBlockToolbar';
 export * from './Sidebar';
 export * from './Editor'

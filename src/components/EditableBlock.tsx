@@ -1,5 +1,5 @@
 import { cn } from "@/common/utils";
-import { Block, Input, EditableBlockToolbar, Textarea } from "@/components";
+import { Block, Input, EditableBlockToolbar, Textarea, EditableBlockSettings } from "@/components";
 import { deleteBlock, moveBlockDown, moveBlockUp } from "@/store/features/blocks";
 import { useDispatch } from "react-redux";
 
@@ -10,21 +10,6 @@ interface Props extends React.ComponentProps<'div'> {
 
 export const EditableBlock = ({ data, editMode, ...props }: Props) => {
     const dispatch = useDispatch();
-    // TODO: add palette, add image upload, add text align
-    const composeSettings = () => {
-        switch(data.type) {
-            case 'headline':
-                return <Input type="text" placeholder="Enter headline" />
-            case 'paragraph':
-                return <Textarea placeholder="Enter paragraph" />
-            case 'button':
-                return <Input type="text" placeholder="Enter button text" />
-            case 'image':
-                return <Input type="text" placeholder="Enter image url" />
-            default:
-                return null
-        }
-    }
 
     const handleClickMoveUp = () => dispatch(moveBlockUp(data.id));
     const handleClickMoveDown = () => dispatch(moveBlockDown(data.id));
@@ -50,7 +35,7 @@ export const EditableBlock = ({ data, editMode, ...props }: Props) => {
                         />
                     </div>
                     <div className="p-5 rounded-xs bg-white w-full" onClick={handleClickSettings}>
-                        {composeSettings()}
+                        <EditableBlockSettings data={data} />
                     </div>
                 </>
             )}
