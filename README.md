@@ -1,54 +1,51 @@
-# React + TypeScript + Vite
+![image](https://github.com/user-attachments/assets/a6ab8963-bc63-436e-af71-091cad67d1d1)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# React Drag and Drop Editor
 
-Currently, two official plugins are available:
+A simple drag-and-drop editor built with React, Redux Toolkit, Tailwind CSS, React DnD, and React Hook Form. This app allows users to create a custom layout by dragging components such as headlines, paragraphs, images, and buttons.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+* **Drag and Drop**: The app uses React DnD for an interactive drag-and-drop interface.
+* **Form Handling**: React Hook Form is used to manage and validate forms.
+* **Global State**: Redux Toolkit is used for managing the global state.
+* **Styling**: Tailwind CSS is used for fast and efficient styling.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Live Preview
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+You can view the live preview of the app here: [Live Preview](https://web-editor-gules.vercel.app/)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Installation
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. Clone the repository:
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+   ```bash
+   git clone <repository_url>
+   cd <project_name>
+   ```
+
+2. Install the dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. To build the project for production:
+
+   ```bash
+   npm run build
+   ```
+
+4. To run the project locally in development mode:
+
+   ```bash
+   npm start
+   ```
+
+## Technologies Used
+
+* **React**: JavaScript library for building user interfaces.
+* **Redux Toolkit**: For state management.
+* **Tailwind CSS**: A utility-first CSS framework for styling.
+* **React Hook Form**: A library for handling form validation and submission.
+* **React DnD**: A drag-and-drop library for React.
