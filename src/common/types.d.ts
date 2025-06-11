@@ -24,7 +24,7 @@ interface ImageBlock extends BaseBlock {
 
 interface ButtonBlock extends BaseBlock {
     type: 'button';
-    text: string;
+    content: string;
 }
 
 type BlockData =
