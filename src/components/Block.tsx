@@ -11,7 +11,6 @@ export const Block = ({
   className,
   ...props
 }: Props) => {
-
   const composeBlockData = () => {
     const data = { icon: <></>, label: "" };
 

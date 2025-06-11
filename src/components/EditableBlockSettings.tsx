@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 import { Textarea } from "./Textarea";
 import { Input } from "./Input";
 
+const DEBOUNCE_TIMEOUT = 100;
+
 interface Props extends React.ComponentProps<"div"> {
   data: BlockData;
 }
@@ -13,7 +15,7 @@ interface Props extends React.ComponentProps<"div"> {
 export const EditableBlockSettings = ({ data, ...props }: Props) => {
   const dispatch = useDispatch();
 
-  const composeDefaultFormValues = () => {
+  const composeDefaultFormValues = (): Partial<BlockData> => {
     switch (data.type) {
       case "headline":
         return { content: data.content };
@@ -48,7 +50,7 @@ export const EditableBlockSettings = ({ data, ...props }: Props) => {
 
   const debouncedUpdate = debounce((changes: Partial<BlockData>) => {
     dispatch(updateBlock({ id: data.id, changes }));
-  }, 100);
+  }, DEBOUNCE_TIMEOUT);
 
   useEffect(() => {
     if (!watched) return;

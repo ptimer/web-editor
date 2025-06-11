@@ -10,6 +10,8 @@ export * from './Textarea';
 export * from './Button';
 export * from './Header'
 export * from './Block';
+export * from './Draggable';
+export * from './Droppable';
 export * from './EditableBlock';
 export * from './EditableBlockSettings';
 export * from './EditableBlockToolbar';

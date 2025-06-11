@@ -1,13 +1,12 @@
 import { mockBlocks } from "@/common/constants";
-import { Block } from "@/components";
+import { Block, Draggable } from "@/components";
 import { addBlock } from "@/store/features/blocks";
 import { useDispatch } from "react-redux";
-import { v4 as uuidv4 } from 'uuid';
 
 export const Sidebar = () => {
   const dispatch = useDispatch();
 
-  const handleAdd = (type: BlockType) => {
+  const handleAddBlock = (type: BlockType) => {
     const composeDefaultBlockData = () => {
       switch(type) {
         case 'headline':
@@ -24,7 +23,6 @@ export const Sidebar = () => {
     }
 
     const newBlock = {
-      id: uuidv4(),
       type,
       ...composeDefaultBlockData(),
     } as BlockData;
@@ -35,12 +33,17 @@ export const Sidebar = () => {
   return (
     <div className="grid grid-cols-2 auto-rows-min w-270 gap-10 p-30 border-r-1 border-[#E4E6F1]">
         {mockBlocks.map(block => (
-          <Block
-            key={block.type}
-            type={block.type}
-            onClick={() => handleAdd(block.type)}
-            className="bg-blue-lightest"
-          />
+          <Draggable
+            type="BLOCK"
+            item={block}
+          >
+            <Block
+              key={block.type}
+              type={block.type}
+              onClick={() => handleAddBlock(block.type)}
+              className="bg-blue-lightest"
+            />
+          </Draggable>
         ))}
     </div>
   )

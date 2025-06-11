@@ -1,6 +1,7 @@
 import { createEntityAdapter, createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { mockBlocks } from "@/common/constants";
 import type { RootState } from "../store";
+import { v4 as uuidv4 } from 'uuid';
 
 const blocksAdapter = createEntityAdapter<BlockData>({
   sortComparer: (a, b) => a.order - b.order,
@@ -15,7 +16,8 @@ const blocksSlice = createSlice({
   name: "blocks",
   initialState,
   reducers: {
-    addBlock: (state, action: PayloadAction<Omit<BlockData, "order">>) => {
+    addBlock: (state, action: PayloadAction<Omit<BlockData, "order" | "id">>) => {
+      const id = uuidv4();
       const maxOrder = Math.max(
         0,
         ...Object.values(state.entities)
@@ -23,7 +25,7 @@ const blocksSlice = createSlice({
           .map((block) => block!.order)
       ) + 1;
 
-      blocksAdapter.addOne(state, { ...action.payload, order: maxOrder });
+      blocksAdapter.addOne(state, { id, ...action.payload, order: maxOrder });
     },
 
     updateBlock: blocksAdapter.updateOne,
